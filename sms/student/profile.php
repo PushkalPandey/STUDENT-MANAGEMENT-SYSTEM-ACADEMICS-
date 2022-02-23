@@ -1,0 +1,101 @@
+<?php
+session_start();
+if(isset($_SESSION['password']))
+{
+    echo "";
+}
+else{
+    header("location: ../admin.php");
+}
+?>
+<?php
+include("header.php");
+include("../dbcon.php");
+$sid=$_GET['sid'];
+$sql="select * from student where rollno='$sid'";
+$run=mysqli_query($con,$sql);
+$data=mysqli_fetch_assoc($run);
+?>
+
+<div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-10 mx-auto">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Your Details</h4>
+                  <p class="card-category">All fields</p>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                        <div >
+                          <label class="bmd-label-floating">Image</label>
+                          <a href="#"> <img src="../dataimg/<?php echo $data['image'];?>" style="max-width:150px"> </a> 
+                      </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Roll No</label>
+                          <input disabled type="number" name="rollno" value="<?php echo $data['rollno'];?>" required class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Password</label>
+                          <input disabled type="text" name="pwd" value="<?php echo $data['password'];?>" required class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Full Name</label>
+                          <input disabled type="text" name="name" value="<?php echo $data['name'];?>" required class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">City</label>
+                          <input disabled type="text" name="city" value="<?php echo $data['city'];?>" required class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Contact Number</label>
+                          <input disabled type="number" name="pcon" value="<?php echo $data['pcon'];?>" required class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Standard</label>
+                          <input disabled type="number" name="std" value="<?php echo $data['standard'];?>" required class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Branch</label>
+                          <input disabled type="text" name="branch" value="<?php echo $data['branch'];?>" required class="form-control">
+                        </div>
+                      </div>
+                     
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+<script>
+document.querySelector('.for-active li:nth-child(2)').classList.add("active");
+  </script>
+<?php
+include("footer.php");
+?>
