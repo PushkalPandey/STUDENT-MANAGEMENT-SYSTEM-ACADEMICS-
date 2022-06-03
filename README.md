@@ -1,1 +1,1 @@
-# STUDENT-MANAGEMENT-SYSTEM-ACADEMICS-
+Student_Management_System
